@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="content">
+		<div class="ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<div class="card">
+						<p:growl id="growl" autoUpdate="true" />
+						<h1>Yeni Stok Kartı</h1>
+						<h:form class="form-staff">
+							<p:panelGrid columns="4"
+								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+								layout="grid" styleClass="ui-panelgrid-blank"
+								style="border:0px none; background-color:transparent;">
+								
+								<p:outputLabel value=" Stok Kodu" />
+								<p:inputText placeholder="Stok Kodu"
+									value="#{stockService.stock.cod}" required="true"
+									requiredMessage="Stok Kodu Alanını Doldurunuz" />
+								<p:outputLabel value="Stok Adı" />
+								<p:inputText placeholder="Stok Adı"
+									value="#{stockService.stock.name}" required="true" 
+									requiredMessage="Stok Adı Alanını Doldurunuz" />
+								<p:outputLabel value="Ölçü Birimi" />
+							
+								<p:selectOneMenu value="#{stockService.stock.unit1}" converter="omnifaces.SelectItemsConverter">
+								
+									<f:selectItems value="#{unitBean.unitList}" var="stc"
+										itemValue="#{stc}" itemLabel="#{stc.name}" />
+								</p:selectOneMenu>
+								
+								<p:outputLabel value="Stok Grubu" />
+							
+								<p:selectOneMenu value="#{stockService.stock.group}" converter="omnifaces.SelectItemsConverter">
+								
+									<f:selectItems value="#{stcokGroupBean.stockGroupsList}" var="grp"
+										itemValue="#{grp}" itemLabel="#{grp.name}" />
+								</p:selectOneMenu>
+								
+								<p:outputLabel value="Aktif" />
+								<p:selectBooleanCheckbox value="#{stockService.stock.status}"></p:selectBooleanCheckbox>
+								<p:outputLabel></p:outputLabel>
+								<p:outputLabel></p:outputLabel>
+							</p:panelGrid>
+							<p:commandButton value="Kaydet" action="#{stockService.kaydet()}"
+								style="max-width:150px" ></p:commandButton>
+									<p:commandButton value="Sil" action="#{stockService.Delete1()}"
+								style="max-width:150px"></p:commandButton>
+								
+								
+							
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

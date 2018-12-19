@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:po="http://primefaces.org/omega">
+	<h:form id="menuform">
+		<div class="sidebar">
+			<div class="nano">
+				<div class="nano-content sidebar-scroll-content">
+					<div class="logo">
+						<p:graphicImage name="images/logo.png" library="omega-layout"
+							width="113" />
+					</div>
+
+					<div class="profile">
+						<p:graphicImage name="images/profile.png" library="omega-layout" />
+						<a id="profile-button" href="#"> <span class="username">
+								<h:outputLabel
+									value="#{loginBean.staff.name.concat(' ').concat(loginBean.staff.surname)}" />
+						</span> <i class="fa fa-fw fa-cog"></i>
+						</a>
+						<ul>
+							<li><a href="#"><i class="fa fa-fw fa-sliders"></i><span>Account</span></a></li>
+							<li><a href="#"><i class="fa fa-fw fa-bell"></i><span>Notifications</span><span
+									class="menu-badge">2</span></a></li>
+							<li><p:commandLink class="fa fa-fw fa-sign-out"
+									action="#{loginBean.doLogout()}" value="Çıkış">
+									<f:ajax execute="@form" render=":statusBlock" />
+								</p:commandLink></li>
+						</ul>
+					</div>
+
+					<div class="menu">
+						<po:menu>
+							<p:menuitem id="om_dashboard" value="Dashboard" icon="fa fa-home" />
+							<p:submenu id="am_customization" label="Stok Fişleri"
+								icon="fa fa-fw fa-bars">
+								<p:menuitem id="custom1" value="Stok Giriş Fişi"
+									icon="fa fa-fw fa-bars" outcome="/xhtml/stockAction2.xhtml" />
+								<p:menuitem id="custom2" value="Stok Çıkış Fişi"
+									icon="fa fa-fw fa-bars" outcome="/xhtml/stockAction2.xhtml" />
+							</p:submenu>
+							<p:submenu id="om_components" label="Tanımlar"
+								icon="fa fa-sitemap">
+								<p:menuitem id="om_empty" value="Ölçü Birimleri"
+									icon="fa fa-square-o" outcome="/xhtml/unitList.xhtml" />
+
+								<p:menuitem id="om_empty3" value="Stok Grupları"
+									icon="fa fa-square-o" outcome="/xhtml/stockGroupList.xhtml" />
+
+								<p:menuitem id="om_empty1" value="Depo Tanımları"
+									icon="fa fa-square-o" outcome="/xhtml/storeList.xhtml" />
+
+								<p:menuitem id="om_empty2" value="Stok Kartları"
+									icon="fa fa-square-o" outcome="/xhtml/stockList.xhtml" />
+
+
+							</p:submenu>
+
+
+							<p:menuitem id="om_db_landing" value="Landing"
+								icon="fa fa-certificate" />
+							<p:submenu id="om_default" label="Template Pages"
+								icon="fa fa-life-saver">
+
+
+							</p:submenu>
+							<p:submenu id="om_hierarchy" label="Menu Hierarchy"
+								icon="fa fa-gg">
+								<p:submenu id="om_sm1" label="Submenu 1" icon="fa fa-sign-in">
+									<p:submenu id="om_sm11" label="Submenu 1.1"
+										icon="fa fa-sign-in">
+										<p:menuitem id="om_lnk111" value="Link 1.1.1"
+											icon="fa fa-sign-in" url="#" />
+										<p:menuitem id="om_lnk112" value="Link 1.1.2"
+											icon="fa fa-sign-in" url="#" />
+										<p:menuitem id="om_lnk113" value="Link 1.1.3"
+											icon="fa fa-sign-in" url="#" />
+									</p:submenu>
+									<p:submenu id="om_sm12" label="Submenu 1.2"
+										icon="fa fa-sign-in">
+										<p:menuitem id="om_lnk121" value="Link 1.2.1"
+											icon="fa fa-sign-in" url="#" />
+									</p:submenu>
+								</p:submenu>
+								<p:submenu id="om_sm2" label="Submenu 2" icon="fa fa-sign-in">
+									<p:submenu id="om_sm21" label="Submenu 2.1"
+										icon="fa fa-sign-in">
+										<p:menuitem id="om_lnk211" value="Link 2.1.1"
+											icon="fa fa-sign-in" url="#" />
+										<p:menuitem id="om_lnk212" value="Link 2.1.2"
+											icon="fa fa-sign-in" url="#" />
+									</p:submenu>
+									<p:submenu id="om_sm22" label="Submenu 2.2"
+										icon="fa fa-sign-in">
+										<p:menuitem id="om_lnk221" value="Link 2.2.1"
+											icon="fa fa-sign-in" url="#" />
+									</p:submenu>
+								</p:submenu>
+							</p:submenu>
+
+							<p:menuitem id="om_doc" value="Documentation" icon="fa fa-book" />
+						</po:menu>
+					</div>
+				</div>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>

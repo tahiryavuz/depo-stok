@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="content">
+		<div class="ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<div class="card">
+						<p:growl id="growl" autoUpdate="true" />
+						<h1>Stok Girişi</h1>
+						<h:form class="form-staff">
+
+							<p:panelGrid columns="4"
+								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+								layout="grid" styleClass="ui-panelgrid-blank"
+								style="border:0px none; background-color:transparent">
+
+								<p:outputLabel value="Tarih" />
+								<p:calendar id="date"
+									value="#{stockActionBean.stockAction.tarih}"
+									pattern="dd/MM/yyyy" mask="true" />
+
+								<p:outputLabel value="Açıklama" />
+								<p:inputText placeholder="Açıklama"
+									value="#{stockActionBean.stockAction.aciklama}" required="true"
+									requiredMessage="Stok Adı Alanını Doldurunuz" />
+
+
+
+							</p:panelGrid>
+							<br />
+							<p:separator />
+							
+							<p:panelGrid columns="4"
+								columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4,ui-grid-col-4"
+								layout="grid" styleClass="ui-panelgrid-blank"
+								style="border:0px none; background-color:transparent;">
+								
+								
+								<p:outputLabel value="Stok Adı"></p:outputLabel>
+								<p:outputLabel value="Birim Fiyat"></p:outputLabel>
+								<p:outputLabel value="Giriş Miktar"></p:outputLabel>
+								<p:outputLabel value="Toplam Tutar"></p:outputLabel>
+
+
+							</p:panelGrid>
+							<p:panelGrid columns="6"
+								columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4,ui-grid-col-4"
+								layout="grid" styleClass="ui-panelgrid-blank"
+								style="border:0px none; background-color:transparent;">
+
+
+								<p:autoComplete id="themePojo"
+									value="#{stockActionBean.stockAction.stock}"
+									completeMethod="#{stockService.completeTheme1}" var="theme"
+									itemLabel="#{theme.name}" itemValue="#{theme}"
+									converter="entityConverter" forceSelection="true" />
+
+
+								<p:inputNumber id="gt" 
+									value="#{stockActionBean.stockAction.birim_fiyat}">
+
+									<p:ajax event="keyup" update="tr"
+										listener="#{stockActionBean.hesapla()}"></p:ajax>
+								</p:inputNumber>
+
+
+								<p:inputNumber id="fd"
+									value="#{stockActionBean.stockAction.giris_miktar}">
+									<p:ajax event="keyup" update="tr"
+										listener="#{stockActionBean.hesapla()}"></p:ajax>
+
+								</p:inputNumber>
+
+								<p:inputNumber  id="tr"
+									value="#{stockActionBean.stockAction.tutar}">
+								</p:inputNumber>
+
+
+							</p:panelGrid>
+
+							<br />
+							<p:separator />
+
+							<p:panelGrid columns="10"
+								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+								layout="grid" styleClass="ui-panelgrid-blank"
+								style="border:0px none; background-color:transparent;">
+								<p:commandButton value="Kaydet"
+									action="#{stockActionBean.kaydet()}" style="max-width:150px"></p:commandButton>
+
+							</p:panelGrid>
+
+
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

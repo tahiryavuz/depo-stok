@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+
+		<div class="ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<div class="card">
+						<p:growl id="growl" autoUpdate="true" />
+						<h1>Depo Tanımı</h1>
+						<h:form class="form-staff">
+
+
+							<p:panelGrid columns="4"
+								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+								layout="grid" styleClass="ui-panelgrid-blank"
+								style="border:0px none; background-color:transparent;">
+								<p:outputLabel value="Depo Kodu" />
+								<p:inputText placeholder="Depo Kodu"
+									value="#{storeBean.store.cod}" required="true"
+									requiredMessage="Depo Kodu Alanını Doldurunuz" />
+									
+								<p:outputLabel value="Depo Adı" />
+								<p:inputText placeholder="Depo Adı"
+									value="#{storeBean.store.name}" required="true"
+									requiredMessage="Depo Adı Alanını Doldurunuz" />
+									
+									<p:outputLabel value="Adres" />
+								<p:inputText placeholder="Adres"
+									value="#{storeBean.store.address}" required="true"
+									requiredMessage="Adres Alanını Doldurunuz" />
+									
+									<p:outputLabel value="Yetkili" />
+								<p:inputText placeholder="Yetkili"
+									value="#{storeBean.store.admin}" required="true"
+									requiredMessage="Yetkili Alanını Doldurunuz" />
+									
+									<p:outputLabel value="Gsm" />
+								<p:inputMask id="gsm" placeholder="Gsm"
+									value="#{storeBean.store.gsm}" required="true"
+									mask="(999) 999-9999"
+									requiredMessage="Gsm Alanını Doldurunuz"></p:inputMask>
+									
+									<p:outputLabel value="Telefon" />
+								<p:inputMask id="tlf" placeholder="Telefon"
+									value="#{storeBean.store.phone}" required="true"
+									mask="(999) 999-9999"
+									requiredMessage="Telefon Alanını Doldurunuz"></p:inputMask>
+									
+									<p:outputLabel value="Fax" />
+								<p:inputMask id="fax" placeholder="Fax"
+									value="#{storeBean.store.fax}" required="true"
+									mask="(999) 999-9999"
+									requiredMessage="Fax Alanını Doldurunuz"></p:inputMask>
+									
+									<p:outputLabel value="E Mail" />
+									<p:inputText id="email" required="true" label="email"
+									placeholder="E Mail"
+									requiredMessage="Email Alanını Doldurunuz."
+									validatorMessage="Email Formatı Yanliş"
+									value="#{storeBean.store.email}">
+
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								</p:inputText>
+
+							
+								
+								<p:outputLabel value="Aktif" />
+							<p:selectBooleanCheckbox value="#{storeBean.store.status}"></p:selectBooleanCheckbox>
+
+								<p:outputLabel></p:outputLabel>
+								<p:outputLabel></p:outputLabel>
+
+
+
+							</p:panelGrid>
+
+							<p:commandButton value="Kaydet" action="#{storeBean.kaydet()}"
+								style="max-width:150px"></p:commandButton>
+
+
+
+						</h:form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

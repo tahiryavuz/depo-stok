@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+
+		<div class="ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<div class="card">
+						<p:growl id="growl" autoUpdate="true" />
+						<h1>Kullanıcı Kayıt İşlemleri</h1>
+						<h:form class="form-staff">
+
+
+							<p:panelGrid columns="4"
+								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+								layout="grid" styleClass="ui-panelgrid-blank"
+								style="border:0px none; background-color:transparent;">
+								<p:outputLabel value="Adı" />
+								<p:inputText placeholder="Adınız"
+									value="#{staffBean.staff.name}" required="true"
+									requiredMessage="Ad Alanını Doldurunuz" />
+								<p:outputLabel value="Soyadı" />
+								<p:inputText placeholder="Soyadınız"
+									value="#{staffBean.staff.surname}" required="true"
+									requiredMessage="Soyad Alanını Doldurunuz" />
+
+								<p:outputLabel value="E Mail" />
+								<p:inputText id="email" required="true" label="email" size="40"
+									placeholder="E Mail"
+									requiredMessage="Email Alanını Doldurunuz."
+									validatorMessage="Email Formatı Yanliş"
+									value="#{staffBean.staff.email}">
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								</p:inputText>
+								<p:outputLabel value="Telefon" />
+								<p:inputMask id="tlf" placeholder="Telefon"
+									value="#{staffBean.staff.gsm}" required="true"
+									mask="(999) 999-9999"
+									requiredMessage="Telefon Alanını Doldurunuz"></p:inputMask>
+								<p:outputLabel value="Kullanıcı" />
+								<p:inputText placeholder="Kullanıcı Adı"
+									value="#{staffBean.staff.uname}" required="true"
+									requiredMessage="Kullanıcı Alanını Doldurunuz" />
+								<p:outputLabel value="Şifre" />
+								
+								<p:password placeholder="Şifre"
+									value="#{staffBean.staff.password}" />
+								<p:outputLabel value="Durum" />
+								<p:selectOneMenu value="#{staffBean.staff.status}">
+									<f:selectItem itemValue="1" itemLabel="Aktif" />
+									<f:selectItem itemValue="0" itemLabel="Pasif" />
+								</p:selectOneMenu>
+
+								<p:outputLabel></p:outputLabel>
+								<p:outputLabel></p:outputLabel>
+
+
+
+							</p:panelGrid>
+
+							<p:commandButton value="Kaydet" action="#{staffBean.kaydet()}"
+								style="max-width:150px"></p:commandButton>
+
+
+
+						</h:form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

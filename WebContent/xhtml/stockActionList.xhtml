@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<div class="card">
+
+					<h1>
+						<span>STOK FİŞ LİSTELERİ</span>
+					</h1>
+					<div>
+						<p:commandButton value="Yeni Kayıt" action="stockAction2"
+							style="max-width:150px;"></p:commandButton>
+					</div>
+					<br />
+
+
+					<p:dataTable value="#{stockActionBean.stockActionList}" var="str"
+						paginator="true" rows="5"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="5,10,15" lazy="true">
+
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Fiş Tarihi" />
+							</f:facet>
+							<h:outputText value="#{str.tarih}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="İşlem Türü" />
+							</f:facet>
+							<h:outputText value="#{str.islem_turu}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Fiş Açıklama" />
+							</f:facet>
+							<h:outputText value="#{str.aciklama}" />
+						</p:column>
+
+
+
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Stok Kodu" />
+							</f:facet>
+							<h:outputText value="#{str.stock.cod}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Stok Adı" />
+							</f:facet>
+							<h:outputText value="#{str.stock.name}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Birim" />
+							</f:facet>
+							<h:outputText value="#{str.stock.unit1.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Grup" />
+							</f:facet>
+							<h:outputText value="#{str.stock.group.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Giriş Miktarı" />
+							</f:facet>
+							<h:outputText value="#{str.giris_miktar}">
+							<f:convertNumber pattern="###,###.00" locale="tr_TR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Çıkış Miktarı" />
+							</f:facet>
+							<h:outputText value="#{str.cikis_miktar}">
+							<f:convertNumber pattern="###,###.00" locale="tr_TR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Birim Fiyat" />
+							</f:facet>
+							<h:outputText value="#{str.birim_fiyat}">
+							<f:convertNumber pattern="###,###.00" locale="tr_TR" />
+							</h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Tutar" />
+							</f:facet>
+							<h:outputText value="#{str.tutar}">
+								<f:convertNumber pattern="###,###.00" locale="tr_TR" />
+							</h:outputText>
+						</p:column>
+
+
+
+						<p:columnGroup rendered="true" type="footer">
+							<p:row>
+								<p:column rowspan="2" headerText="Manufacturer" />
+								<p:column colspan="2">
+									<f:facet name="footer">
+										<h:outputText value="Toplam Tutar: " />
+										<h:outputText value="#{stockActionBean.valueBuyTotal1}">
+											<f:convertNumber pattern="###,###.00" locale="tr_TR" />
+										</h:outputText>
+									</f:facet>
+								</p:column>
+							</p:row>
+						</p:columnGroup>
+
+
+					</p:dataTable>
+
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

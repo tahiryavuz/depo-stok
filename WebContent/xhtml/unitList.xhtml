@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<div class="card">
+
+					<h1>
+						<span>ÖLÇÜ BİRİMLERİ</span>
+						</h1>
+					<div>
+					<p:commandButton value="Yeni Kayıt" action="unit" style="max-width:150px;"></p:commandButton>
+					</div>
+						
+					
+
+					<p:dataTable value="#{unitBean.unitList}" var="unt"
+						paginator="true" rows="5"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="5,10,15" lazy="true">
+
+
+						<p:column style="width:32px;text-align: center">
+							<f:facet name="header">
+								<h:outputText value="Sıra No" />
+							</f:facet>
+							<h:outputText value="#{unt.id}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Ölçü Birimi" />
+							</f:facet>
+							<h:outputText value="#{unt.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="KIsaltma" />
+							</f:facet>
+							<h:outputText value="#{unt.ksname}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Durum" />
+							</f:facet>
+							<h:outputText value="#{unt.status=='1'?'Aktif':'Pasif'}" />
+						</p:column>
+						<p:column style="width:32px;text-align: center">
+							<f:facet name="header">
+							</f:facet>
+
+							<p:commandButton action="#{unitBean.outcome()}"
+								actionListener="#{unitBean.sec(unt)}" icon="ui-icon-search"
+								title="Detay" />
+						</p:column>
+
+					</p:dataTable>
+
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

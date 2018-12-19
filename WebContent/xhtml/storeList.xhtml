@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<div class="card">
+
+					<h1>
+						<span>DEPO LİSTELERİ</span>
+						</h1>
+					<div>
+					<p:commandButton value="Yeni Kayıt" action="store" style="max-width:150px;"></p:commandButton>
+					</div>
+						<br/>
+					
+
+					<p:dataTable value="#{storeBean.storeList}" var="str"
+						paginator="true" rows="5"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="5,10,15" lazy="true">
+
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Depo Kodu" />
+							</f:facet>
+							<h:outputText value="#{str.cod}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Depo Adı" />
+							</f:facet>
+							<h:outputText value="#{str.name}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Durum" />
+							</f:facet>
+							<h:outputText value="#{str.status=='true'?'Aktif':'Pasif'}" />
+						</p:column>
+						<p:column style="width:32px;text-align: center">
+							<f:facet name="header">
+							</f:facet>
+
+							<p:commandButton action="#{storeBean.outcome()}"
+								actionListener="#{storeBean.sec(str)}" icon="ui-icon-search"
+								title="Detay" />
+						</p:column>
+
+					</p:dataTable>
+
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
