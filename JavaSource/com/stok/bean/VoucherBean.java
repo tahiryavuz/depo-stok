@@ -105,6 +105,21 @@ public class VoucherBean implements Serializable {
 		}
 
 	}
+	
+	public void Delete2() {
+
+		if (voucher.getId() == null) {
+			deleteMessage1();
+		} else {
+			em.getTransaction().begin();
+			em.remove(voucher);
+			em.getTransaction().commit();
+			setVoucher(new Voucher());
+			deleteMessage();
+			VoucherList();
+		}
+
+	}
 
 	public void kaydet() {
 
