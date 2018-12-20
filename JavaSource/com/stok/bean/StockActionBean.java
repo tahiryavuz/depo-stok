@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 
 import com.stok.entity.Stock;
 import com.stok.entity.StockAction;
+import com.stok.entity.Voucher;
 import com.stok.util.EntityUtil;
 
 @ManagedBean
@@ -23,6 +24,26 @@ public class StockActionBean implements Serializable {
 	
 	
 	 StockBean bean=new StockBean();
+	 
+	 Voucher voucher=new Voucher();
+	 
+	 VoucherBean voucherBean=new VoucherBean();
+
+	public VoucherBean getVoucherBean() {
+		return voucherBean;
+	}
+
+	public void setVoucherBean(VoucherBean voucherBean) {
+		this.voucherBean = voucherBean;
+	}
+
+	public Voucher getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(Voucher voucher) {
+		this.voucher = voucher;
+	}
 
 	public StockBean getBean() {
 		return bean;
@@ -176,19 +197,24 @@ public class StockActionBean implements Serializable {
 	public void kaydet() {
 
 		em.getTransaction().begin();
-		if (stockAction.getId() == null) {
+		if (stockAction.getId() == null ) {
 
 	        
 			em.persist(stockAction);
+			voucher.setTarih(stockAction.getTarih());
+			
 			
 			
 
 		} else
-
+                
 			em.merge(stockAction);
+	
 		em.getTransaction().commit();
 		saveMessage();
 		setStockAction(new StockAction());
+		setVoucher(new Voucher());
+		
 
 		StockActionList();
 

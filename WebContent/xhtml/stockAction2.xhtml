@@ -12,19 +12,29 @@
 						<h1>Stok Girişi</h1>
 						<h:form class="form-staff">
 
-							<p:panelGrid columns="4"
-								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+
+
+							<p:panelGrid columns="6"
+								columnClasses="ui-grid-col-1,ui-grid-col-2,ui-grid-col-1,ui-grid-col-3,ui-grid-col-1,ui-grid-col-8"
 								layout="grid" styleClass="ui-panelgrid-blank"
 								style="border:0px none; background-color:transparent">
 
-								<p:outputLabel value="Tarih" />
+								<p:outputLabel value="Tarih"></p:outputLabel>
 								<p:calendar id="date"
-									value="#{stockActionBean.stockAction.tarih}"
+									value="#{voucherBean.voucher.tarih}"
 									pattern="dd/MM/yyyy" mask="true" />
 
-								<p:outputLabel value="Açıklama" />
+								<p:outputLabel value="Depo"></p:outputLabel>
+								<p:selectOneMenu value="#{voucherBean.voucher.depo}"
+									converter="omnifaces.SelectItemsConverter">
+
+									<f:selectItems value="#{storeBean.storeList}"
+										var="str" itemValue="#{str}" itemLabel="#{str.name}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="Açıklama"></p:outputLabel>
 								<p:inputText placeholder="Açıklama"
-									value="#{stockActionBean.stockAction.aciklama}" required="true"
+									value="#{voucherBean.voucher.aciklama}" required="true"
 									requiredMessage="Stok Adı Alanını Doldurunuz" />
 
 
@@ -32,13 +42,13 @@
 							</p:panelGrid>
 							<br />
 							<p:separator />
-							
+
 							<p:panelGrid columns="4"
 								columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4,ui-grid-col-4"
 								layout="grid" styleClass="ui-panelgrid-blank"
 								style="border:0px none; background-color:transparent;">
-								
-								
+
+
 								<p:outputLabel value="Stok Adı"></p:outputLabel>
 								<p:outputLabel value="Birim Fiyat"></p:outputLabel>
 								<p:outputLabel value="Giriş Miktar"></p:outputLabel>
@@ -59,7 +69,7 @@
 									converter="entityConverter" forceSelection="true" />
 
 
-								<p:inputNumber id="gt" 
+								<p:inputNumber id="gt"
 									value="#{stockActionBean.stockAction.birim_fiyat}">
 
 									<p:ajax event="keyup" update="tr"
@@ -74,7 +84,7 @@
 
 								</p:inputNumber>
 
-								<p:inputNumber  id="tr"
+								<p:inputNumber id="tr"
 									value="#{stockActionBean.stockAction.tutar}">
 								</p:inputNumber>
 

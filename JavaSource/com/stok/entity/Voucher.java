@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Stock")
-public class PlugStock {
+@Table(name = "Voucher")
+public class Voucher {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +22,18 @@ public class PlugStock {
 	private Date tarih;
 	private String aciklama;
 	Double tutar;
+	private String depo;
 	
+	public String getDepo() {
+		return depo;
+	}
+
+
+	public void setDepo(String depo) {
+		this.depo = depo;
+	}
+
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	private StockAction stockAction;
 	
@@ -87,12 +98,5 @@ public class PlugStock {
 		this.stockAction = stockAction;
 	}
 
-
-
-	
-	
-
-
-	
 
 }

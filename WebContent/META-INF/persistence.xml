@@ -14,6 +14,7 @@
 		<class>com.stok.entity.StockGroup</class>
 		<class>com.stok.entity.Stock</class>
 		<class>com.stok.entity.StockAction</class>
+		<class>com.stok.entity.Voucher</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
