@@ -20,21 +20,20 @@
 								style="border:0px none; background-color:transparent">
 
 								<p:outputLabel value="Tarih"></p:outputLabel>
-								<p:calendar id="date"
-									value="#{voucherBean.voucher.tarih}"
+								<p:calendar id="date" value="#{stockActionBean.voucher.tarih}"
 									pattern="dd/MM/yyyy" mask="true" />
 
 								<p:outputLabel value="Depo"></p:outputLabel>
-								<p:selectOneMenu value="#{voucherBean.voucher.depo}"
+								<p:selectOneMenu value="#{stockActionBean.voucher.depo}"
 									converter="omnifaces.SelectItemsConverter">
 
-									<f:selectItems value="#{storeBean.storeList}"
-										var="str" itemValue="#{str}" itemLabel="#{str.name}" />
+									<f:selectItems value="#{storeBean.storeList}" var="str"
+										itemValue="#{str.id}" itemLabel="#{str.name}" />
 								</p:selectOneMenu>
 
 								<p:outputLabel value="Açıklama"></p:outputLabel>
 								<p:inputText placeholder="Açıklama"
-									value="#{voucherBean.voucher.aciklama}" required="true"
+									value="#{stockActionBean.voucher.aciklama}" required="true"
 									requiredMessage="Stok Adı Alanını Doldurunuz" />
 
 
@@ -43,53 +42,63 @@
 							<br />
 							<p:separator />
 
-							<p:panelGrid columns="4"
-								columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4,ui-grid-col-4"
-								layout="grid" styleClass="ui-panelgrid-blank"
-								style="border:0px none; background-color:transparent;">
 
 
-								<p:outputLabel value="Stok Adı"></p:outputLabel>
-								<p:outputLabel value="Birim Fiyat"></p:outputLabel>
-								<p:outputLabel value="Giriş Miktar"></p:outputLabel>
-								<p:outputLabel value="Toplam Tutar"></p:outputLabel>
 
 
-							</p:panelGrid>
-							<p:panelGrid columns="6"
-								columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4,ui-grid-col-4"
-								layout="grid" styleClass="ui-panelgrid-blank"
-								style="border:0px none; background-color:transparent;">
+							<p:dataTable value="#{stockActionBean.stockActionList}" var="str"
+								paginator="true" rows="5"
+								paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+								rowsPerPageTemplate="5,10,15" lazy="true">
 
 
-								<p:autoComplete id="themePojo"
-									value="#{stockActionBean.stockAction.stock}"
-									completeMethod="#{stockService.completeTheme1}" var="theme"
-									itemLabel="#{theme.name}" itemValue="#{theme}"
-									converter="entityConverter" forceSelection="true" />
+								<p:column>
+									<p:autoComplete id="themePojo"
+										value="#{stockActionBean.stockAction.stock}"
+										completeMethod="#{stockService.completeTheme1}" var="theme"
+										itemLabel="#{theme.name}" itemValue="#{theme}"
+										converter="entityConverter" forceSelection="true" />
+								</p:column>
+
+								<p:column>
+									<p:inputNumber id="gt"
+										value="#{stockActionBean.stockAction.birim_fiyat}">
+
+										<p:ajax event="keyup" update="tr"
+											listener="#{stockActionBean.hesapla()}"></p:ajax>
+									</p:inputNumber>
+								</p:column>
+
+								<p:column>
+									<p:inputNumber id="fd"
+										value="#{stockActionBean.stockAction.giris_miktar}">
+										<p:ajax event="keyup" update="tr"
+											listener="#{stockActionBean.hesapla()}"></p:ajax>
+
+									</p:inputNumber>
+
+								</p:column>
+
+								<p:column>
+									<p:inputNumber id="tr"
+										value="#{stockActionBean.stockAction.tutar}">
+									</p:inputNumber>
+
+								</p:column>
+
+							</p:dataTable>
 
 
-								<p:inputNumber id="gt"
-									value="#{stockActionBean.stockAction.birim_fiyat}">
-
-									<p:ajax event="keyup" update="tr"
-										listener="#{stockActionBean.hesapla()}"></p:ajax>
-								</p:inputNumber>
 
 
-								<p:inputNumber id="fd"
-									value="#{stockActionBean.stockAction.giris_miktar}">
-									<p:ajax event="keyup" update="tr"
-										listener="#{stockActionBean.hesapla()}"></p:ajax>
-
-								</p:inputNumber>
-
-								<p:inputNumber id="tr"
-									value="#{stockActionBean.stockAction.tutar}">
-								</p:inputNumber>
-
-
-							</p:panelGrid>
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<p:commandButton value="Add new row"
+										styleClass="ui-priority-primary" process="@this"
+										update="@form" action="#{stockActionBean.onAddNew()}"
+										oncomplete="PF('cars1').addRow();" />
+								</div>
+							</div>
 
 							<br />
 							<p:separator />

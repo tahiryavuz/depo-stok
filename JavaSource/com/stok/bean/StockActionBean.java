@@ -10,8 +10,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-
-
 import com.stok.entity.Stock;
 import com.stok.entity.StockAction;
 import com.stok.entity.Voucher;
@@ -54,6 +52,7 @@ public class StockActionBean implements Serializable {
 	}
 
 	EntityManager em = EntityUtil.getEntityManager();
+	EntityManager em1 = EntityUtil.getEntityManager();
 
 	public EntityManager getEm() {
 		return em;
@@ -195,17 +194,24 @@ public class StockActionBean implements Serializable {
 
 
 	public void kaydet() {
+		
+		for(int i=0; i<=5; i++)
+		{
 
 		em.getTransaction().begin();
-		if (stockAction.getId() == null ) {
-
-	        
+		if (stockAction.getId() == null || voucher.getId()==null ) {
+  
+			em.persist(voucher);
+			
+			
+		
+			
 			em.persist(stockAction);
-			voucher.setTarih(stockAction.getTarih());
 			
 			
+			System.out.println("deneme..................");
 			
-
+			
 		} else
                 
 			em.merge(stockAction);
@@ -213,15 +219,37 @@ public class StockActionBean implements Serializable {
 		em.getTransaction().commit();
 		saveMessage();
 		setStockAction(new StockAction());
-		setVoucher(new Voucher());
+		
 		
 
 		StockActionList();
+		}
 
 	}
+	
+	 public List<StockAction> createStock(int size) {
+	        List<StockAction> list = new ArrayList<StockAction>();
+	        for(int i = 0 ; i < size ; i++) {
+	        	
+	        	list.add(new StockAction());
+	        	
+	           // list.add(new Car(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));
+	        }
+	         
+	        return list;
+	    }
+	
+	
     
 	
-	
+	 public void onAddNew() {
+	        // Add one new car to the table:
+		 
+		 
+	        StockAction car2Add = createStock(1).get(0);
+	        stockAction1.add(car2Add);
+	     
+	    }
 	
 	public void sec(StockAction stk) {
 		this.stockAction = stk;

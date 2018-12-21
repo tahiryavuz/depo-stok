@@ -25,6 +25,8 @@ public class StockAction {
 	private Double birim_fiyat;
 	private Double tutar;
 	
+	 
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Stock stock;
 	
