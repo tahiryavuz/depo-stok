@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<div class="card">
+					<h:form>
+						<p:inputText value="#{denemeIlListBean.ad}" placeholder="İl adını girin" />
+					
+						<p:commandButton value="Ara" actionListener="#{denemeIlListBean.ara()}" update=":dataList" style="max-width:150px;"></p:commandButton>
+					
+					</h:form>
+					<div>
+					<p:commandButton value="Yeni Kayıt" action="denemeIlEdit" style="max-width:150px;"></p:commandButton>
+					</div>
+						<br/>
+					
+				<h:form id="dataList">
+				
+				
+					<p:dataTable  value="#{denemeIlListBean.entityList}" var="entity"
+						paginator="true" rows="5"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="5,10,15" lazy="true">
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="İl Adı" />
+							</f:facet>
+							<p:commandButton value="#{entity.ad}" action="denemeIlEdit" style="max-width:150px;">
+								<f:param name="p_id" value="#{entity.id}" />
+							
+							</p:commandButton>
+							
+						</p:column>
+
+
+					</p:dataTable>
+					</h:form>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

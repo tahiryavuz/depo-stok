@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence  
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+
+	<persistence-unit name="StokPU" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+<!-- 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> -->
+		
+		<jta-data-source>java:jboss/datasources/stokDS</jta-data-source>
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.id.new_generator_mappings" value="false" />
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+            <property name="hibernate.connection.useUnicode" value="true" />
+            <property name="hibernate.connection.characterEncoding" value="UTF-8" />
+            <property name="hibernate.connection.characterSetResults" value="UTF-8" />
+            <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+            <property name="hibernate.jdbc.use_streams_for_binary" value="false"/>
+		</properties>
+	</persistence-unit>
+
+	
+	
+	
+	
+<!-- 	<persistence-unit name="StokPU" transaction-type="RESOURCE_LOCAL"> -->
+<!-- 		<provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+<!-- 		<class>com.stok.entity.Staff</class> -->
+<!-- 		<class>com.stok.entity.Unit</class> -->
+<!-- 		<class>com.stok.entity.Store</class> -->
+<!-- 		<class>com.stok.entity.StockGroup</class> -->
+<!-- 		<class>com.stok.entity.Stock</class> -->
+<!-- 		<class>com.stok.entity.StockAction</class> -->
+<!-- 		<class>com.stok.entity.Voucher</class> -->
+<!-- 		<class>com.stok.entity.DenemeIl</class> -->
+
+<!-- 		<exclude-unlisted-classes>true</exclude-unlisted-classes> -->
+<!-- 		<properties> -->
+<!-- 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> -->
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Stok" /> -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="postgres" /> -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="Sanane.1988" /> -->
+<!-- 			<property name="hibernate.show_sql" value="true" /> -->
+<!-- 			<property name="hibernate.flushMode" value="FLUSH_AUTO" /> -->
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			
+<!-- 		</properties> -->
+<!-- 	</persistence-unit> -->
+</persistence>
