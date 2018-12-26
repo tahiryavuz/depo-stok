@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import com.stok.entity.Staff;
 import com.stok.model.StaffModel;
@@ -18,15 +19,8 @@ import com.stok.util.EntityUtil;
 @SessionScoped
 public class StaffBean implements Serializable {
 	private static final long serialVersionUID = 1320745815695188569L;
-	EntityManager em = EntityUtil.getEntityManager();
-	public EntityManager getEm() {
-		return em;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
-	}
-
+	@Inject EntityManager em;
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

@@ -19,7 +19,7 @@
 					<br />
 
 
-					<p:dataTable value="#{stockService.stockList}" var="str"
+					<p:dataTable value="#{stockServiceList.stockList}" var="str"
 						paginator="true" rows="5"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						rowsPerPageTemplate="5,10,15" lazy="true">
@@ -64,8 +64,8 @@
 							<f:facet name="header">
 							</f:facet>
 
-							<p:commandButton action="#{stockService.outcome()}"
-								actionListener="#{stockService.sec(str)}" icon="ui-icon-search"
+							<p:commandButton action="#{stockServiceList.outcome()}"
+								actionListener="#{stockServiceList.sec(str)}" icon="ui-icon-search"
 								title="Detay" />
 						</p:column>
 					</p:dataTable>

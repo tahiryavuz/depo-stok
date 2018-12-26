@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import com.stok.entity.Stock;
@@ -16,16 +16,15 @@ import com.stok.entity.Voucher;
 import com.stok.util.EntityUtil;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class StockActionBean implements Serializable {
 	private static final long serialVersionUID = 1320745815695188569L;
-	
-	
-	 StockBean bean=new StockBean();
-	 
-	 Voucher voucher=new Voucher();
-	 
-	 VoucherBean voucherBean=new VoucherBean();
+
+	StockBean bean = new StockBean();
+
+	Voucher voucher = new Voucher();
+
+	VoucherBean voucherBean = new VoucherBean();
 
 	public VoucherBean getVoucherBean() {
 		return voucherBean;
@@ -71,11 +70,10 @@ public class StockActionBean implements Serializable {
 	}
 
 	private StockAction stockAction = new StockAction();
-	private Stock stock = new Stock();
-	private StockBean stockBean=new StockBean();
 
-	
-	
+	private Stock stock = new Stock();
+	private StockBean stockBean = new StockBean();
+
 	public StockBean getStockBean() {
 		return stockBean;
 	}
@@ -84,34 +82,15 @@ public class StockActionBean implements Serializable {
 		this.stockBean = stockBean;
 	}
 
-	
-	
 	public void hesapla() {
-		
-	    stockAction.setTutar(this.stockAction.getBirim_fiyat()*this.stockAction.getGiris_miktar());
+
+		stockAction.setTutar(this.stockAction.getBirim_fiyat() * this.stockAction.getGiris_miktar());
 		System.out.println(stockAction.getGiris_miktar());
 		System.out.println(stockAction.getBirim_fiyat());
-	
-	}
-	
-	  private List<StockAction> stockAction1;
 
-	    
-	    public Double getValueBuyTotal() {
-	        Double quantity = 0.00;
-	        for(StockAction s : stockAction1) {
-	            quantity += s.getGiris_miktar();
-	        }
-	        return quantity;
-	    }
-	    
-	    public Double getValueBuyTotal1() {
-	        Double quantity = 0.00;
-	        for(StockAction s : stockAction1) {
-	            quantity += s.getTutar();
-	        }
-	        return quantity.doubleValue();
-	    }
+	}
+
+	private List<StockAction> stockAction1;
 
 	public Stock getStock() {
 		return stock;
@@ -129,9 +108,13 @@ public class StockActionBean implements Serializable {
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void StockActionList() {
-		setStockActionList(em.createQuery("from StockAction").getResultList());
+		// setStockActionList(em.createQuery("from StockAction").getResultList());
 		setStockAction1(em.createQuery("from StockAction").getResultList());
-		
+		stockActionList.add(new StockAction());
+		stockActionList.add(new StockAction());
+		stockActionList.add(new StockAction());
+		stockActionList.add(new StockAction());
+		stockActionList.add(new StockAction());
 
 	}
 
@@ -192,65 +175,48 @@ public class StockActionBean implements Serializable {
 
 	}
 
-
 	public void kaydet() {
-		
-		for(int i=0; i<=5; i++)
-		{
 
-		em.getTransaction().begin();
-		if (stockAction.getId() == null || voucher.getId()==null ) {
-  
-			em.persist(voucher);
-			
-			
-		
-			
-			em.persist(stockAction);
-			
-			
-			System.out.println("deneme..................");
-			
-			
-		} else
-                
-			em.merge(stockAction);
-	
-		em.getTransaction().commit();
-		saveMessage();
-		setStockAction(new StockAction());
-		
-		
+		for (StockAction stockAction : stockActionList) {
 
-		StockActionList();
+			em.getTransaction().begin();
+			if (stockAction.getId() == null || voucher.getId() == null) {
+				em.persist(voucher);
+				em.persist(stockAction);
+				System.out.println("deneme..................");
+			} else
+				em.merge(stockAction);
+
+			em.getTransaction().commit();
+			saveMessage();
+			setStockAction(new StockAction());
+
+			StockActionList();
 		}
 
 	}
-	
-	 public List<StockAction> createStock(int size) {
-	        List<StockAction> list = new ArrayList<StockAction>();
-	        for(int i = 0 ; i < size ; i++) {
-	        	
-	        	list.add(new StockAction());
-	        	
-	           // list.add(new Car(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));
-	        }
-	         
-	        return list;
-	    }
-	
-	
-    
-	
-	 public void onAddNew() {
-	        // Add one new car to the table:
-		 
-		 
-	        StockAction car2Add = createStock(1).get(0);
-	        stockAction1.add(car2Add);
-	     
-	    }
-	
+
+	public List<StockAction> createStock(int size) {
+		List<StockAction> list = new ArrayList<StockAction>();
+		for (int i = 0; i < size; i++) {
+
+			list.add(new StockAction());
+
+			// list.add(new Car(getRandomId(), getRandomBrand(), getRandomYear(),
+			// getRandomColor(), getRandomPrice(), getRandomSoldState()));
+		}
+
+		return list;
+	}
+
+	public void onAddNew() {
+		// Add one new car to the table:
+
+		StockAction car2Add = createStock(1).get(0);
+		stockAction1.add(car2Add);
+
+	}
+
 	public void sec(StockAction stk) {
 		this.stockAction = stk;
 

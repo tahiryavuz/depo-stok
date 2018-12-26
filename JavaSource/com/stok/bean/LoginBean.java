@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import com.stok.entity.Staff;
 import com.stok.model.StaffModel;
@@ -18,8 +19,7 @@ public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = -4463307867344813038L;
 
-	EntityManager em = EntityUtil.getEntityManager();
-
+	@Inject EntityManager em;
 	private StaffModel staffModel = new StaffModel();
 	Staff staff = new Staff();
 	private boolean loggedIn;

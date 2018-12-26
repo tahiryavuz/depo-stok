@@ -54,7 +54,7 @@
 
 								<p:column>
 									<p:autoComplete id="themePojo"
-										value="#{stockActionBean.stockAction.stock}"
+										value="#{str.stock}"
 										completeMethod="#{stockService.completeTheme1}" var="theme"
 										itemLabel="#{theme.name}" itemValue="#{theme}"
 										converter="entityConverter" forceSelection="true" />
@@ -62,7 +62,7 @@
 
 								<p:column>
 									<p:inputNumber id="gt"
-										value="#{stockActionBean.stockAction.birim_fiyat}">
+										value="#{str.birim_fiyat}">
 
 										<p:ajax event="keyup" update="tr"
 											listener="#{stockActionBean.hesapla()}"></p:ajax>
@@ -71,7 +71,7 @@
 
 								<p:column>
 									<p:inputNumber id="fd"
-										value="#{stockActionBean.stockAction.giris_miktar}">
+										value="#{str.giris_miktar}">
 										<p:ajax event="keyup" update="tr"
 											listener="#{stockActionBean.hesapla()}"></p:ajax>
 
@@ -81,7 +81,7 @@
 
 								<p:column>
 									<p:inputNumber id="tr"
-										value="#{stockActionBean.stockAction.tutar}">
+										value="#{str.tutar}">
 									</p:inputNumber>
 
 								</p:column>

@@ -1,5 +1,6 @@
 package com.stok.model;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import javax.persistence.NoResultException;
@@ -9,8 +10,7 @@ import com.stok.util.EntityUtil;
 
 public class StaffModel {
 
-	EntityManager em = EntityUtil.getEntityManager();
-
+	@Inject EntityManager em;
 	public Staff getStaff(String uname, String password) {
 
 		try {
