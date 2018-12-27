@@ -21,16 +21,16 @@
 								style="border:0px none; background-color:transparent;">
 								<p:outputLabel value="Ölçü Birimi" />
 								<p:inputText placeholder="Ölçü Birimi"
-									value="#{unitBean.unit.name}" required="true"
+									value="#{unitEditBean.entity.name}" required="true"
 									requiredMessage="Ölçü Birimini Doldurunuz" />
 								<p:outputLabel value="Kısaltma" />
 								<p:inputText placeholder="Kısaltma"
-									value="#{unitBean.unit.ksname}" required="true"
+									value="#{unitEditBean.entity.ksname}" required="true"
 									requiredMessage="Kısaltma Alanını Doldurunuz" />
 
 								
 								<p:outputLabel value="Durum" />
-								<p:selectOneMenu value="#{unitBean.unit.status}">
+								<p:selectOneMenu value="#{unitEditBean.entity.status}">
 									<f:selectItem itemValue="1" itemLabel="Aktif" />
 									<f:selectItem itemValue="0" itemLabel="Pasif" />
 								</p:selectOneMenu>
@@ -45,7 +45,7 @@
 
 							</p:panelGrid>
 
-							<p:commandButton value="Kaydet" action="#{unitBean.kaydet()}"
+							<p:commandButton value="Kaydet" action="#{unitEditBean.save()}"
 								style="max-width:150px"></p:commandButton>
 
 

@@ -12,8 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import com.stok.entity.Staff;
-import com.stok.model.StaffModel;
-import com.stok.util.EntityUtil;
+import com.stok.services.StaffModel;
+
 
 @ManagedBean
 @SessionScoped

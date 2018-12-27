@@ -8,57 +8,62 @@
 		<div class="ui-g">
 			<div class="ui-g-12">
 				<div class="card">
-
-					<h1>
+				
+					<h2>
 						<span>ÖLÇÜ BİRİMLERİ</span>
-						</h1>
-					<div>
-					<p:commandButton value="Yeni Kayıt" action="unit" style="max-width:150px;"></p:commandButton>
-					</div>
-						
+					</h2>
 					
+	
+					<h:form>
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-panelgrid-blank"
+							style="border:0px none; background-color:transparent;">
 
-					<p:dataTable value="#{unitBean.unitList}" var="unt"
-						paginator="true" rows="5"
-						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-						rowsPerPageTemplate="5,10,15" lazy="true">
+							<p:inputText value="#{unitListBean.name}"
+								placeholder="Birim girin" />
+							<p:commandButton value="Ara"
+								actionListener="#{unitListBean.ara()}" update=":dataList"
+								style="max-width:150px;"></p:commandButton>
 
 
-						<p:column style="width:32px;text-align: center">
-							<f:facet name="header">
-								<h:outputText value="Sıra No" />
-							</f:facet>
-							<h:outputText value="#{unt.id}" />
-						</p:column>
+						</p:panelGrid>
+					</h:form>
+					<h:form id="dataList">
 
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Ölçü Birimi" />
-							</f:facet>
-							<h:outputText value="#{unt.name}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="KIsaltma" />
-							</f:facet>
-							<h:outputText value="#{unt.ksname}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Durum" />
-							</f:facet>
-							<h:outputText value="#{unt.status=='1'?'Aktif':'Pasif'}" />
-						</p:column>
-						<p:column style="width:32px;text-align: center">
-							<f:facet name="header">
-							</f:facet>
+						<p:dataTable value="#{unitListBean.entityList}" var="entity"
+							paginator="true" rows="5"
+							paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+							rowsPerPageTemplate="5,10,15" lazy="true">
 
-							<p:commandButton action="#{unitBean.outcome()}"
-								actionListener="#{unitBean.sec(unt)}" icon="ui-icon-search"
-								title="Detay" />
-						</p:column>
+							<p:column>
+								<f:facet name="header">
 
-					</p:dataTable>
+									<h:outputText value="Ölçü Birimi" />
+								</f:facet>
+								<p:commandLink value="#{entity.name}" action="unitEdit"
+									actionListener="unitEdti" style="max-width:150px;">
+									<f:param name="p_id" value="#{entity.id}" />
+								</p:commandLink>
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Kısaltma" />
+								</f:facet>
+								<h:outputText value="#{entity.ksname}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Durum" />
+								</f:facet>
+								<h:outputText value="#{entity.status=='1'?'Aktif':'Pasif'}" />
+							</p:column>
+
+						</p:dataTable>
+
+					</h:form>
 
 				</div>
 			</div>

@@ -31,9 +31,9 @@
 <!-- 		<filter-name>LoginFilter</filter-name> -->
 <!-- 		<url-pattern>/xhtml/*</url-pattern> -->
 <!-- 	</filter-mapping> -->
-<!-- 	<filter> -->
-<!-- 		<filter-name>LoginFilter</filter-name> -->
-<!-- 		<filter-class>com.stok.util.LoginFilter</filter-class> -->
+<!--  	<filter> -->
+<!--  		<filter-name>LoginFilter</filter-name>  -->
+<!-- 		<filter-class>com.stok.util.LoginFilter</filter-class>  -->
 <!-- 	</filter> -->
  <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>

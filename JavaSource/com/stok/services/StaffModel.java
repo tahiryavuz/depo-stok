@@ -1,12 +1,10 @@
-package com.stok.model;
+package com.stok.services;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-
 import javax.persistence.NoResultException;
-
 import com.stok.entity.Staff;
-import com.stok.util.EntityUtil;
+
 
 public class StaffModel {
 

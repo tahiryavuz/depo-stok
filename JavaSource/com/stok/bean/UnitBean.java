@@ -7,14 +7,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import com.stok.entity.Unit;
 import com.stok.util.EntityUtil;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class UnitBean implements Serializable {
 	private static final long serialVersionUID = 1320745815695188569L;
 	EntityManager em = EntityUtil.getEntityManager();

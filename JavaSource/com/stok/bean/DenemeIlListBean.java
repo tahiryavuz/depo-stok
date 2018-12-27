@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import com.stok.entity.DenemeIl;
-import com.stok.servis.DenemeIIlServis;
+import com.stok.services.DenemeIIlServis;
 
 @ViewScoped
 @javax.faces.bean.ManagedBean

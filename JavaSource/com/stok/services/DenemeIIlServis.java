@@ -1,4 +1,4 @@
-package com.stok.servis;
+package com.stok.services;
 
 import java.io.Serializable;
 import java.util.List;

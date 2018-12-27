@@ -8,21 +8,20 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
-import com.stok.entity.DenemeIl;
-import com.stok.services.DenemeIIlServis;
+import com.stok.entity.Unit;
+import com.stok.services.UnitServices;
 
 @ViewScoped
 @javax.faces.bean.ManagedBean
-public class DenemeIlEditBean implements Serializable{
+public class UnitEditBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Inject DenemeIIlServis denemeIIlServis;
+	@Inject UnitServices unitServices;
 	
-	private DenemeIl entity;
+	private Unit entity;
 				
-	public void kaydet() {
-		setEntity(denemeIIlServis.kaydet(getEntity()));
+	public void save() {
+		setEntity(unitServices.save(getEntity()));
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Kaydetme baþarýlý"));
 	}
 	
@@ -30,16 +29,16 @@ public class DenemeIlEditBean implements Serializable{
 	public void init() {
 		Map<String, String> map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		if (map.get("p_id") != null) {
-			entity = denemeIIlServis.findEntity(map.get("p_id"));
+			entity = unitServices.findEntity(map.get("p_id"));
 		} else
-			setEntity(new DenemeIl());
+			setEntity(new Unit());
 	}
 
-	public DenemeIl getEntity() {
+	public Unit getEntity() {
 		return entity;
 	}
 
-	public void setEntity(DenemeIl entity) {
-		this.entity = entity;
+	public void setEntity(Unit unit) {
+		this.entity = unit;
 	}
 }
